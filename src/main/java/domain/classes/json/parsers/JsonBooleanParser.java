@@ -1,6 +1,6 @@
 package domain.classes.json.parsers;
 
-import domain.abstraction.JsonPrimitiveParser;
+import domain.abstraction.JsonElementParser;
 import domain.classes.exceptions.JsonBooleanParserException;
 import domain.classes.exceptions.JsonParserException;
 import domain.classes.json.JsonBoolean;
@@ -8,7 +8,7 @@ import domain.classes.json.JsonBoolean;
 import java.io.IOException;
 import java.io.PushbackReader;
 
-public class JsonBooleanParser extends JsonPrimitiveParser<JsonBoolean> {
+public class JsonBooleanParser extends JsonElementParser<JsonBoolean> {
     private final int startSymbol;
 
     public JsonBooleanParser(final int startSymbol) {
@@ -22,7 +22,6 @@ public class JsonBooleanParser extends JsonPrimitiveParser<JsonBoolean> {
         try {
             int c;
             while ((c = getc(reader)) != -1) {
-                System.out.println("BOOLEAN: " + (char)c);
                 if (c == ',' || c == '}' || c == ']') {
                     reader.unread(c);
                     break;

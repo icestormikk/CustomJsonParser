@@ -1,8 +1,8 @@
 package domain.classes.json;
 
-import domain.abstraction.JsonPrimitive;
+import domain.abstraction.JsonElement;
 
-public class JsonBoolean extends JsonPrimitive<Boolean> {
+public class JsonBoolean extends JsonElement<Boolean> {
     public JsonBoolean(final boolean value) {
         this.value = value;
     }

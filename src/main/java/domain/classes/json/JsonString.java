@@ -1,8 +1,8 @@
 package domain.classes.json;
 
-import domain.abstraction.JsonPrimitive;
+import domain.abstraction.JsonElement;
 
-public class JsonString extends JsonPrimitive<String> {
+public class JsonString extends JsonElement<String> {
     public JsonString(final String value) {
         this.value = value;
     }

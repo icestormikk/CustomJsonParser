@@ -1,8 +1,8 @@
 package domain.classes.json;
 
-import domain.abstraction.JsonPrimitive;
+import domain.abstraction.JsonElement;
 
-public class JsonNull extends JsonPrimitive<Void> {
+public class JsonNull extends JsonElement<Void> {
     public JsonNull() {
         this.value = null;
     }

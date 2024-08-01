@@ -1,6 +1,6 @@
 package domain.classes.json.parsers;
 
-import domain.abstraction.JsonPrimitiveParser;
+import domain.abstraction.JsonElementParser;
 import domain.classes.exceptions.JsonNumberParserException;
 import domain.classes.exceptions.JsonParserException;
 import domain.classes.json.JsonNumber;
@@ -8,7 +8,7 @@ import domain.classes.json.JsonNumber;
 import java.io.IOException;
 import java.io.PushbackReader;
 
-public class JsonNumberParser extends JsonPrimitiveParser<JsonNumber> {
+public class JsonNumberParser extends JsonElementParser<JsonNumber> {
     private final int startSymbol;
 
     public JsonNumberParser(int startSymbol) {
@@ -22,7 +22,6 @@ public class JsonNumberParser extends JsonPrimitiveParser<JsonNumber> {
         int c;
         try {
             while ((c = getc(reader)) != -1) {
-                System.out.println("NUMBER: " + (char)c);
                 if (c == ',' || c == '}' || c == ']') {
                     reader.unread(c);
                     break;

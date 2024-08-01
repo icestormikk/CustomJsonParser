@@ -1,12 +1,12 @@
 package domain.classes.json;
 
-import domain.abstraction.JsonPrimitive;
+import domain.abstraction.JsonElement;
 
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class JsonObject extends JsonPrimitive<Map<JsonString, JsonPrimitive<?>>> {
-    public JsonObject(final Map<JsonString, JsonPrimitive<?>> properties) {
+public class JsonObject extends JsonElement<Map<String, JsonElement<?>>> {
+    public JsonObject(final Map<String, JsonElement<?>> properties) {
         this.value = properties;
     }
 
@@ -15,7 +15,7 @@ public class JsonObject extends JsonPrimitive<Map<JsonString, JsonPrimitive<?>>>
         String props = this.value
                 .entrySet()
                 .parallelStream()
-                .map((entry) -> entry.getKey().toString() + ": " + entry.getValue().toString())
+                .map((entry) -> entry.getKey() + ": " + entry.getValue().toString())
                 .collect(Collectors.joining(", "));
         return "{" + props + "}";
     }

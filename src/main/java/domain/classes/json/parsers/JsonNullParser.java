@@ -1,6 +1,6 @@
 package domain.classes.json.parsers;
 
-import domain.abstraction.JsonPrimitiveParser;
+import domain.abstraction.JsonElementParser;
 import domain.classes.exceptions.JsonNullParserException;
 import domain.classes.exceptions.JsonParserException;
 import domain.classes.json.JsonNull;
@@ -8,7 +8,7 @@ import domain.classes.json.JsonNull;
 import java.io.IOException;
 import java.io.PushbackReader;
 
-public class JsonNullParser extends JsonPrimitiveParser<JsonNull> {
+public class JsonNullParser extends JsonElementParser<JsonNull> {
     private final int startSymbol;
 
     public JsonNullParser(final int startSymbol) {
@@ -22,7 +22,6 @@ public class JsonNullParser extends JsonPrimitiveParser<JsonNull> {
         try {
             int c;
             while ((c = getc(reader)) != -1) {
-                System.out.println("NULL: " + (char)c);
                 if (c == ',' || c == ']' || c == '}') {
                     reader.unread(c);
                     break;

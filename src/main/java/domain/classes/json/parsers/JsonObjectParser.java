@@ -1,7 +1,7 @@
 package domain.classes.json.parsers;
 
-import domain.abstraction.JsonPrimitive;
-import domain.abstraction.JsonPrimitiveParser;
+import domain.abstraction.JsonElement;
+import domain.abstraction.JsonElementParser;
 import domain.classes.exceptions.JsonObjectParserException;
 import domain.classes.exceptions.JsonParserException;
 import domain.classes.json.JsonObject;
@@ -11,15 +11,13 @@ import java.io.PushbackReader;
 import java.util.HashMap;
 import java.util.Map;
 
-public class JsonObjectParser extends JsonPrimitiveParser<JsonObject> {
+public class JsonObjectParser extends JsonElementParser<JsonObject> {
     @Override
     public JsonObject parse(final PushbackReader reader) throws JsonParserException {
-        Map<JsonString, JsonPrimitive<?>> properties = new HashMap<>();
+        Map<String, JsonElement<?>> properties = new HashMap<>();
 
         int c;
         while ((c = getc(reader)) != -1) {
-            System.out.println("KEY: " + (char)c);
-
             if (c == ',') {
                 continue;
             }
@@ -32,15 +30,14 @@ public class JsonObjectParser extends JsonPrimitiveParser<JsonObject> {
 
             JsonString key = new JsonStringParser().parse(reader);
 
-            System.out.println("OBJECT's KEY: " + key);
             while ((c = getc(reader)) != ':' && c != -1) {
                 if (!Character.isWhitespace((char) c)) {
                     throw new JsonObjectParserException("Expected colon after key");
                 }
             }
 
-            JsonPrimitive<?> value = (JsonPrimitive<?>) getParser(getc(reader)).parse(reader);
-            properties.put(key, value);
+            JsonElement<?> value = (JsonElement<?>) getParser(getc(reader)).parse(reader);
+            properties.put(key.getValue(), value);
         }
 
         return new JsonObject(properties);

@@ -1,8 +1,8 @@
-import domain.abstraction.JsonPrimitive;
-import domain.abstraction.JsonPrimitiveParser;
-import domain.classes.exceptions.JsonObjectParserException;
+package domain.classes.json.parsers;
+
+import domain.abstraction.JsonElement;
+import domain.abstraction.JsonElementParser;
 import domain.classes.exceptions.JsonParserException;
-import domain.classes.exceptions.JsonStringParserException;
 import domain.interfaces.CanReadBuffer;
 
 import java.io.*;
@@ -18,10 +18,10 @@ public class JsonParser implements CanReadBuffer {
     }
 
     /**
-     * Распарсить файл, путь к которому был передан в конструкторе данного объекта JsonPrimitiveParser
+     * Распарсить файл, путь к которому был передан в конструкторе данного объекта JsonElementParser
      */
-    public JsonPrimitive<?> parse() {
-        JsonPrimitive<?> result = null;
+    public JsonElement<?> parse() throws JsonParserException {
+        JsonElement<?> result = null;
 
         try (
             InputStream inputStream = new FileInputStream(filename);
@@ -31,10 +31,10 @@ public class JsonParser implements CanReadBuffer {
         ) {
             int c;
             while ((c = getc(pushbackReader)) != -1) {
-                result = (JsonPrimitive<?>) JsonPrimitiveParser.getParser(c).parse(pushbackReader);
+                result = (JsonElement<?>) JsonElementParser.getParser(c).parse(pushbackReader);
             }
         } catch (IOException | JsonParserException e) {
-            throw new RuntimeException(e);
+            throw new JsonParserException(e.getMessage());
         }
 
         return result;
