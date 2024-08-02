@@ -5,7 +5,17 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        List<Car> cars = JsonToCarsParser.parse("test_json_file.json");
+        if (args.length != 1) {
+            System.err.println(
+                """
+                Incorrect number of arguments passed.
+                USAGE: java-json-parser.java path/to/test-file.json
+                """
+            );
+            return;
+        }
+
+        List<Car> cars = JsonToCarsParser.parse(args[0]);
 
         if (cars == null) {
             throw new IllegalStateException("Не удалось корректно преобразовать json-структуру в массив объектов Car");
