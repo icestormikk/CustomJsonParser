@@ -8,7 +8,16 @@ import domain.classes.json.JsonString;
 import java.io.IOException;
 import java.io.PushbackReader;
 
+/**
+ * Класс для парсинга строковых значений, встречающихся в json-файле
+ */
 public class JsonStringParser extends JsonElementParser<JsonString> {
+    /**
+     * Преобразование строкого значения в json-файле в строковое значение внутри файла
+     * @param reader Объект типа PushbackReader для посимвольного считывания содержимого файла
+     * @return объект класса JsonObject в случае успешного парсинга
+     * @throws JsonParserException Ошибка, возникающая во время обработки json-даннных
+     */
     @Override
     public JsonString parse(final PushbackReader reader) throws JsonParserException {
         StringBuilder builder = new StringBuilder();

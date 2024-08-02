@@ -8,7 +8,7 @@ import domain.interfaces.CanReadBuffer;
 import java.io.*;
 
 /**
- * Основный класс парсера json-объектов
+ * Рабочий класс парсера json-объектов
  */
 public class JsonParser implements CanReadBuffer {
     private final String filename;
@@ -27,7 +27,7 @@ public class JsonParser implements CanReadBuffer {
             InputStream inputStream = new FileInputStream(filename);
             Reader reader = new InputStreamReader(inputStream);
             BufferedReader buffer = new BufferedReader(reader);
-            PushbackReader pushbackReader = new PushbackReader(buffer);
+            PushbackReader pushbackReader = new PushbackReader(buffer)
         ) {
             int c;
             while ((c = getc(pushbackReader)) != -1) {

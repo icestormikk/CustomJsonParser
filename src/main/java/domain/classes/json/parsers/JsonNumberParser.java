@@ -7,14 +7,25 @@ import domain.classes.json.JsonNumber;
 
 import java.io.IOException;
 import java.io.PushbackReader;
-
+/**
+ * Класс для обработки числовых значений в json-файле
+ */
 public class JsonNumberParser extends JsonElementParser<JsonNumber> {
+    /**
+     * Начальный символ (символ, который идентифицирует данные в файле)
+     */
     private final int startSymbol;
 
     public JsonNumberParser(int startSymbol) {
         this.startSymbol = startSymbol;
     }
 
+    /**
+     * Метод для парсинга числовых значения
+     * @param reader Объект типа PushbackReader для посимвольного считывания содержимого файла
+     * @return Вещественное либо целое число
+     * @throws JsonParserException Ошибка, возникающая во время обработки json-даннных
+     */
     @Override
     public JsonNumber parse(final PushbackReader reader) throws JsonParserException {
         StringBuilder builder = new StringBuilder(String.valueOf((char)startSymbol));

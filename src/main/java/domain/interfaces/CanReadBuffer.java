@@ -3,6 +3,9 @@ package domain.interfaces;
 import java.io.IOException;
 import java.io.PushbackReader;
 
+/**
+ * Интерфейс, упрощающий взаимодействие с символьным буффером
+ */
 public interface CanReadBuffer {
 
     /**

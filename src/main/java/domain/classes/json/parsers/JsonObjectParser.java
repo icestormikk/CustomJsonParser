@@ -11,7 +11,16 @@ import java.io.PushbackReader;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Класс для парсинга всех json-объектов в файле
+ */
 public class JsonObjectParser extends JsonElementParser<JsonObject> {
+    /**
+     * Метод для посимвольной конвертации в JsonObject
+     * @param reader Объект типа PushbackReader для посимвольного считывания содержимого файла
+     * @return объект класса JsonObject в случае успешноо чтения файла
+     * @throws JsonParserException Ошибка, возникающая во время обработки json-даннных
+     */
     @Override
     public JsonObject parse(final PushbackReader reader) throws JsonParserException {
         Map<String, JsonElement<?>> properties = new HashMap<>();

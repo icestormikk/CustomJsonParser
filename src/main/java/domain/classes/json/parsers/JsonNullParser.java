@@ -8,13 +8,25 @@ import domain.classes.json.JsonNull;
 import java.io.IOException;
 import java.io.PushbackReader;
 
+/**
+ * Класс для парсинга null-значений, встречающихся в json-файле
+ */
 public class JsonNullParser extends JsonElementParser<JsonNull> {
+    /**
+     * Начальный символ (символ, который идентифицирует данные в файле)
+     */
     private final int startSymbol;
 
     public JsonNullParser(final int startSymbol) {
         this.startSymbol = startSymbol;
     }
 
+    /**
+     * Метод для парсинга null значения
+     * @param reader Объект типа PushbackReader для посимвольного считывания содержимого файла
+     * @return null, в случае успешного парсинга
+     * @throws JsonParserException Ошибка, возникающая во время обработки json-даннных
+     */
     @Override
     public JsonNull parse(final PushbackReader reader) throws JsonParserException {
         StringBuilder builder = new StringBuilder(String.valueOf((char)this.startSymbol));

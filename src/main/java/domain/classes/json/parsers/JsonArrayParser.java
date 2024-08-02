@@ -10,7 +10,16 @@ import java.io.PushbackReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Парсер json-массивов в файле
+ */
 public class JsonArrayParser extends JsonElementParser<JsonArray> {
+    /**
+     * Метод для парсинга json-массивов, указанных в файле
+     * @param reader Объект типа PushbackReader для посимвольного считывания содержимого файла
+     * @return Массив объектов с общим типом JsonElement<?>
+     * @throws JsonParserException Ошибка, возникающая во время обработки json-даннных
+     */
     @Override
     public JsonArray parse(PushbackReader reader) throws JsonParserException {
         List<JsonElement<?>> items = new ArrayList<>();

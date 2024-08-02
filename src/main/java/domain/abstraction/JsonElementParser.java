@@ -6,9 +6,25 @@ import domain.interfaces.CanReadBuffer;
 
 import java.io.PushbackReader;
 
+/**
+ * Общий класс для всех парсеров внутри программы
+ * @param <T> Тип данных, которые содержит элемент для парсинга
+ */
 public abstract class JsonElementParser<T> implements CanReadBuffer {
+    /**
+     * Функция для посимвольного парсинга определённого фрагмента файла
+     * @param reader Объект типа PushbackReader для посимвольного считывания содержимого файла
+     * @return Объект для работы с json-данными внутри программы
+     * @throws JsonParserException Ошибка, возникшая во время парсинга файла
+     */
     public abstract T parse(final PushbackReader reader) throws JsonParserException;
 
+    /**
+     * Получение парсера в зависимости от текущего символва
+     * @param character символ, который определяет тип получаемого парсера
+     * @return парсер, который необходим (или наиболее подходит) для обработки значения
+     * @throws JsonParserException Ошибка, возникшая во время парсинга файла
+     */
     public static JsonElementParser<?> getParser(int character) throws JsonParserException {
         switch (character) {
             case '"' -> {

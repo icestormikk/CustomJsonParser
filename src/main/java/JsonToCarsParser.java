@@ -9,7 +9,15 @@ import domain.classes.json.parsers.JsonParser;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс, содержащий метод для парсинга json-файла в список автомобилей
+ */
 public class JsonToCarsParser {
+    /**
+     * Парсинг содержимого JSON-файла и преобразование его в список объектов типа Car
+     * @param filename Путь к JSON-файлу, содержимое которого необходимо преобразовать
+     * @return Список автомобилей (список объектов типа Car)
+     */
     public static List<Car> parse(String filename) {
         JsonParser parser = new JsonParser(filename);
 
